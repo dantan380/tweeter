@@ -1,0 +1,16 @@
+header {
+  padding-top: 160px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  background-color: #427a58;
+  background-image: url("https://www.transparenttextures.com/patterns/food.png");
+}
+
+.username {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
