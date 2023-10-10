@@ -21,6 +21,10 @@
   color: #545149;
 }
 
+.new-tweet .counter.negativeNum {
+  color: red;
+}
+
 .new-tweet button {
   color: #FFFFFF;
   background-color: #4056A1;
