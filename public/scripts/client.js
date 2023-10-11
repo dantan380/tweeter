@@ -6,19 +6,19 @@
 $(document).ready(function () {
   renderTweets(tweetData);
 
-  $('#newTweet').submit(function(event) {
+  $("#newTweet").submit(function (event) {
     event.preventDefault();
-  
+
     const formData = $(this).serialize();
-  
-    $.post('/tweets', formData)
-      .done(function(response) {
-        console.log('Tweet has been submitted', response);
+
+    $.post("/tweets", formData)
+      .done(function (response) {
+        console.log("Tweet has been submitted", response);
       })
       .fail(function (xhr, status, error) {
-        console.log('Error:', status, error);
-      })
-  })
+        console.log("Error:", status, error);
+      });
+  });
 });
 
 let tweetData = [
@@ -73,9 +73,9 @@ const createTweetElement = function (tweet) {
   return $tweet;
 };
 
-const renderTweets = function(tweets) {
+const renderTweets = function (tweets) {
   for (let tweet of tweets) {
     const renderedTweet = createTweetElement(tweet);
     $("#tweets-container").append(renderedTweet);
-  };
+  }
 };
