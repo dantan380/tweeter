@@ -5,6 +5,20 @@
  */
 $(document).ready(function () {
   renderTweets(tweetData);
+
+  $('#newTweet').submit(function(event) {
+    event.preventDefault();
+  
+    const formData = $(this).serialize();
+  
+    $.post('/tweets', formData)
+      .done(function(response) {
+        console.log('Tweet has been submitted', response);
+      })
+      .fail(function (xhr, status, error) {
+        console.log('Error:', status, error);
+      })
+  })
 });
 
 let tweetData = [
