@@ -4,8 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function () {
-  const $tweet = createTweetElement(tweetData);
-  $("#tweets-container").append($tweet);
+  renderTweets(tweetData);
 });
 
 let tweetData = [
@@ -37,11 +36,11 @@ const createTweetElement = function (tweet) {
   const { name, handle, avatars } = tweet.user;
   const { text } = tweet.content;
   const dateCreated = tweet.created_at;
-  return $(`
+  let $tweet = $(`
   <article class="tweet">
     <header class="tweet-header">
       <div>
-        <i class="fa-solid fa-face-smile"></i>
+        <img src="${avatars}">
         ${name}
       </div>
       <span class="account">${handle}</span>
@@ -57,4 +56,12 @@ const createTweetElement = function (tweet) {
     </footer>
   </article>
   `);
+  return $tweet;
+};
+
+const renderTweets = function(tweets) {
+  for (let tweet of tweets) {
+    const renderedTweet = createTweetElement(tweet);
+    $("#tweets-container").append(renderedTweet);
+  };
 };
