@@ -4,7 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 $(document).ready(function () {
-  renderTweets(tweetData);
 
   $("#newTweet").submit(function (event) {
     event.preventDefault();
@@ -19,32 +18,25 @@ $(document).ready(function () {
         console.log("Error:", status, error);
       });
   });
+
+  const loadTweets = function() {
+    $.ajax({
+      url:'/tweets',
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        console.log("response", response)
+        renderTweets(response);
+      },
+      error: function(error) {
+        console.log("Error message", error);
+      }
+    });
+  }
+
+  loadTweets();
 });
 
-let tweetData = [
-  {
-    user: {
-      name: "Newton",
-      avatars: "https://i.imgur.com/73hZDYK.png",
-      handle: "@SirIsaac",
-    },
-    content: {
-      text: "If I have seen further it is by standing on the shoulders of giants",
-    },
-    created_at: 1461116232227,
-  },
-  {
-    user: {
-      name: "Descartes",
-      avatars: "https://i.imgur.com/nlhLi3I.png",
-      handle: "@rd",
-    },
-    content: {
-      text: "Je pense , donc je suis",
-    },
-    created_at: 1461113959088,
-  },
-];
 
 const createTweetElement = function (tweet) {
   const { name, handle, avatars } = tweet.user;
@@ -61,7 +53,7 @@ const createTweetElement = function (tweet) {
     </header>
     <p class="tweet-text">${text}</p>
     <footer class="tweet-footer">
-      ${dateCreated}
+      ${timeago.format(dateCreated)}
       <div class="icons">
         <button class="retweet"><i class="fa-solid fa-retweet"></i></button>
         <button><i class="fa-solid fa-flag"></i></button>
@@ -76,6 +68,6 @@ const createTweetElement = function (tweet) {
 const renderTweets = function (tweets) {
   for (let tweet of tweets) {
     const renderedTweet = createTweetElement(tweet);
-    $("#tweets-container").append(renderedTweet);
+    $("#tweets-container").prepend(renderedTweet);
   }
 };
