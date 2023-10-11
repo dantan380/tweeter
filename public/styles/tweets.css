@@ -1,4 +1,4 @@
-.tweets-container {
+.tweet {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -29,7 +29,7 @@
   color: rgb(21, 154, 21);
 }
 
-.tweets-container:hover {
+.tweet:hover {
   box-shadow: 10px 5px 5px lightgrey;
 }
 
