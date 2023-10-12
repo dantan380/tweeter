@@ -46,3 +46,15 @@
   font-family: 'Source Sans 3', sans-serif;
   display: none;
 }
+
+@media only screen and (min-width: 1024px) {
+  .new-tweet {
+    padding-bottom: 1.5em;
+    padding-left: 5.5em;
+    padding-top: 10em;
+  }
+
+  #newTweet {
+    padding-top: 1.5em;
+  }
+}
