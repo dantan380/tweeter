@@ -8,6 +8,17 @@
   background-image: url("https://www.transparenttextures.com/patterns/food.png");
 }
 
+@media only screen and (min-width: 1024px) {
+  .profileinfo {
+    width: 28em;
+    background-color: #427a58;
+    float: left;
+    padding-top: 3em;
+    margin-top: 10.7em;
+    margin-left: 3.5em;
+  }
+}
+
 .username {
   display: flex;
   align-content: center;
