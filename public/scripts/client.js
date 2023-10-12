@@ -35,7 +35,6 @@ $(document).ready(function () {
 
     const tweetText = $('#tweet-text').val();
 
-    const clearTweetTextArea = $('#tweet-text').val('');
 
     if (tweetText === "" || tweetText === null) {
 
@@ -44,27 +43,27 @@ $(document).ready(function () {
       $('#tweet-text').on('focus', function() {
         $('.error-message').slideUp();
       });
-
-    } else if (tweetText.length > 140) {
+      return;
+    } 
+    if (tweetText.length > 140) {
       const error_message = "Tweet content exceeds 140 characters. Please submit a shorter tweet."
       displayError(error_message);
+      console.log($('#tweet-text').val());
       $('#tweet-text').on('focus', function() {
         $('.error-message').slideUp();
       });
-
-    } else {
+      return;
+    } 
       $.post("/tweets", formData)
         .done(function (response) {
           console.log("Tweet has been submitted", response);
-          $("#tweets-container").empty();
           $('.counter').html(140);
           loadTweets();
-          clearTweetTextArea;
         })
         .fail(function (xhr, status, error) {
           console.log("Error:", status, error);
         });
-    }
+        $('#tweet-text').val('');
   });
 });
 
@@ -102,6 +101,7 @@ const createTweetElement = function (tweet) {
 };
 
 const renderTweets = function (tweets) {
+  $("#tweets-container").empty();
   for (let tweet of tweets) {
     const renderedTweet = createTweetElement(tweet);
     $("#tweets-container").prepend(renderedTweet);
