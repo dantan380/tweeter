@@ -27,7 +27,7 @@ $(document).ready(function() {
   };
 
   loadTweets();
-
+//Event handler for submitting tweets.
   $("#newTweet").submit(function(event) {
     event.preventDefault();
 
