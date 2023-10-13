@@ -3,24 +3,24 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function () {
+$(document).ready(function() {
 
-  const displayError = function (errorMessage) {
+  const displayError = function(errorMessage) {
     const $errorElement = $('.error-message');
     $errorElement.text(errorMessage);
     $errorElement.slideDown();
   };
 
-  const loadTweets = function () {
+  const loadTweets = function() {
     $.ajax({
       url: "/tweets",
       method: "GET",
       dataType: "json",
-      success: function (response) {
+      success: function(response) {
         console.log("response", response);
         renderTweets(response);
       },
-      error: function (error) {
+      error: function(error) {
         console.log("Error message", error);
       },
     });
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
   loadTweets();
 
-  $("#newTweet").submit(function (event) {
+  $("#newTweet").submit(function(event) {
     event.preventDefault();
 
     const formData = $(this).serialize();
@@ -38,38 +38,38 @@ $(document).ready(function () {
 
     if (tweetText === "" || tweetText === null) {
 
-      const error_message = "Tweet cannot be empty. Please type something before clicking submit."
+      const error_message = "Tweet cannot be empty. Please type something before clicking submit.";
       displayError(error_message);
       $('#tweet-text').on('focus', function() {
         $('.error-message').slideUp();
       });
       return;
-    } 
+    }
     if (tweetText.length > 140) {
-      const error_message = "Tweet content exceeds 140 characters. Please submit a shorter tweet."
+      const error_message = "Tweet content exceeds 140 characters. Please submit a shorter tweet.";
       displayError(error_message);
       console.log($('#tweet-text').val());
       $('#tweet-text').on('focus', function() {
         $('.error-message').slideUp();
       });
       return;
-    } 
-      $.post("/tweets", formData)
-        .done(function (response) {
-          console.log("Tweet has been submitted", response);
-          $('.counter').html(140);
-          loadTweets();
-        })
-        .fail(function (xhr, status, error) {
-          console.log("Error:", status, error);
-        });
-        $('#tweet-text').val('');
+    }
+    $.post("/tweets", formData)
+      .done(function(response) {
+        console.log("Tweet has been submitted", response);
+        $('.counter').html(140);
+        loadTweets();
+      })
+      .fail(function(xhr, status, error) {
+        console.log("Error:", status, error);
+      });
+    $('#tweet-text').val('');
   });
 });
 
-const createTweetElement = function (tweet) {
+const createTweetElement = function(tweet) {
 // Escape function to prevent users from typing HTML that will affect the web app.
-  const escape = function (str) {
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
@@ -100,7 +100,7 @@ const createTweetElement = function (tweet) {
   return $tweet;
 };
 
-const renderTweets = function (tweets) {
+const renderTweets = function(tweets) {
   $("#tweets-container").empty();
   for (let tweet of tweets) {
     const renderedTweet = createTweetElement(tweet);
