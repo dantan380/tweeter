@@ -25,6 +25,8 @@
   padding-left: 1em;
   word-break: break-word;
   padding-right: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .fa-solid.fa-retweet:hover {
@@ -64,10 +66,5 @@
     display: flex;
     flex-direction: column;
     padding-left: 5.5em;
-  }
-
-  .tweet-text {
-    padding-top: 1em;
-    padding-bottom: 1em;
   }
 }
