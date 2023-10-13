@@ -10,7 +10,7 @@
 
 @media only screen and (min-width: 1024px) {
   .profileinfo {
-    width: 28em;
+    width: 28%;
     background-color: #427a58;
     float: left;
     padding-top: 3em;
