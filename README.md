@@ -16,3 +16,7 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+## Screenshots
+!["Screenshot of desktop view with tweet compose box"](https://github.com/dantan380/tweeter/blob/master/docs/tweet-desktop-view.png?raw=true)
+!["Screenshot of mobile view with tweet compose box and negative character counter"](https://github.com/dantan380/tweeter/blob/master/docs/tweet-mobile-view.png?raw=true)
